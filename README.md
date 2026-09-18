@@ -9,6 +9,23 @@
 
 ---
 
+## 快速开始（源码方式）
+
+```bash
+git clone https://github.com/jiangyonghan760/handglyph.git
+cd handglyph
+pip install pillow numpy scipy
+
+python handglyph.py doctor        # 环境自检
+python handglyph.py selftest      # 跑内置回归测试（69 条断言）
+```
+
+想要**开箱即用**的话，去 [Releases](https://github.com/jiangyonghan760/handglyph/releases) 下载 `handglyph_v0.7.zip`：
+解压后在 Windows 上双击 `handglyph.cmd`、在 macOS/Linux 上跑 `./handglyph.sh` 即可，
+不必自己 clone。发行包里含完整文档与 5 张内置纸面。
+
+---
+
 ## 它和"手写字体"有什么不同
 
 手写字体是别人写一遍、矢量化、再复用，一千个人用同一套字，而且**不管什么
