@@ -1,13 +1,25 @@
 handglyph —— 用你自己的手写字生成手写风图片
 =================================================
 
+⚠️ 使用前请阅读文末的【免责声明】。本项目为个人非官方作品，
+   按"现状"提供，不附带任何担保。
+
+🤖 本文档由 AI 生成。本说明文件由人工智能辅助撰写，非人工逐字编写。
+   文中对功能、参数、已知边界的描述已尽力与代码实际行为保持一致，
+   但可能存在表述偏差、滞后或遗漏。以源码与《能力说明.md》为准。
+
+----------------
+
 这是什么
 --------
 给它一张你自己手写的字版照片，它把里面的字逐个切出来建成"你的字形库"；
 之后你给一段文字，它就用**你自己的笔画**把这些字重新排到纸面上，输出一张图片。
 
-不是字体渲染，笔画全部来自你本人手写。全程本地计算，不联网、不用 AI 模型、
+不是字体渲染，笔画全部来自你本人手写。全程本地计算，不联网、**不用 AI 模型**、
 不产生水印。
+
+📌 注意区分：本程序本身不使用 AI（笔画全部来自你的手写照片，靠几何算法
+   切分与排版）；但**这份文档是 AI 写的**。两者不是一回事。
 
 ----------------
 三步跑起来
@@ -363,4 +375,212 @@ render     排版并合成图片；--flow 自动排版（填满一页再进下�
 ----------------
 许可
 ----------------
-见同目录 LICENSE。
+本项目源代码依据 MIT 许可协议发布，具体条款见同目录 LICENSE。
+
+本程序生成的图片，其笔迹来自使用者自己提供的字版照片。使用者需自行确保对
+所提供的字版照片拥有相应权利。
+
+
+################################################################################
+                            免责声明
+                    （请在使用前完整阅读本节）
+################################################################################
+
+【进入条款】
+您下载、克隆、安装、复制、运行、修改或以任何方式使用本项目（以下称"本软件"）
+的全部或部分，即视为您已完整阅读、充分理解并不可撤销地无条件接受本免责声明
+的全部条款。若您不同意本声明的任何内容，请立即停止使用并删除您持有的全部副本。
+您对本软件的任何使用行为，均构成对本声明的持续接受。
+
+
+一、非官方声明
+--------------
+1. 本软件为个人独立开发、业余时间完成的非商业性作品，系开发者个人学习与
+   技术实践的产物，不隶属于任何公司、组织、机构、团体或项目，亦不代表任何
+   实体的立场或观点。
+2. 本软件未获得任何第三方（包括但不限于任何公司、品牌、平台、服务商、开源
+   基金会、教育机构）的授权、认可、赞助、合作、认证或背书，亦与之不存在任何
+   形式的关联、代理、合伙、雇佣或隶属关系。
+3. 本软件中出现的任何名称、标识、示例文本、演示内容，均为描述性原创命名或
+   为说明功能而作的虚构示例，不指向、不影射任何现实主体。若与现实中的任何
+   主体存在名称重合或内容雷同，纯属巧合且非开发者本意。
+4. 开发者在撰写本文档与编写本软件时未有意引用、复制或抄袭任何第三方的专有
+   代码、文档、图形、商标或其他受保护内容。若权利人认为本软件或本文档存在
+   侵权内容，请通过本项目仓库的 Issues 渠道联系，开发者将在核实后立即删除
+   相关内容并配合处理。
+
+
+二、技术与内容免责
+------------------
+1. 本软件按"现状"（AS IS）与"现有"（AS AVAILABLE）提供，不附带任何形式的
+   明示或默示担保，包括但不限于：适销性担保、特定用途适用性担保、不侵权担保、
+   准确性担保、完整性担保、无错误担保、不中断担保、无有害成分担保，以及因
+   交易习惯或行业惯例而产生的任何担保。上述担保在适用法律允许的最大范围内
+   全部予以排除。
+2. 开发者不保证本软件能够满足您的任何特定需求或期望，不保证其运行不会中断、
+   不会出错、不会失败、不会产生非预期结果，也不保证其中的任何缺陷（已知或
+   未知）会被发现、报告或修复。
+3. 开发者不保证本软件与您的硬件、操作系统、Python 版本、第三方依赖库或其他
+   软件环境兼容，亦不保证跨平台运行结果一致。
+4. 【重要】本软件不是任何形式的专业建议来源。本软件及其输出内容不构成法律、
+   医疗、金融、投资、税务、心理、安全或其他任何专业领域的意见或建议。本软件
+   输出的任何内容均不得作为任何决策的依据。如有相关需求，应当咨询具备相应
+   资质的专业人士。
+5. 【重要】本文档由人工智能生成。本文档（含本免责声明）为 AI 辅助撰写，其
+   对功能、参数、性能、限制条件的描述可能存在偏差、过时、遗漏或错误。一切以
+   源码实际行为为准；文档与代码不一致时，以代码为准。
+
+
+三、网络、第三方组件与接口免责
+------------------------------
+1. 本软件的核心功能全程在本地计算，不联网、不上传任何数据、不调用任何云端
+   模型或在线接口，亦不主动收集、不上传、不存储、不分析任何形式的个人信息、
+   使用数据或内容数据。
+2. 本软件的可选功能（如 OCR 文本提取）依赖第三方开源组件。这些组件非本项目
+   所有、运营或控制，其可用性、稳定性、功能范围、许可条款与收费标准可能随时
+   变更、中止或终止，开发者对此不承担任何责任，亦不作任何明示或默示的担保。
+   您应当自行查阅并遵守这些第三方组件的许可条款与使用政策。
+3. 本软件的某些可选功能可能需要网络连接。您应当自行确保网络环境可用、合规、
+   安全。因网络不可达、被拦截、被限制、被中断而产生的任何后果（包括但不限于
+   功能不可用、数据不完整、任务失败），开发者不承担任何责任。
+4. 【重要】您不得通过本软件处理任何敏感信息、个人隐私信息、商业机密信息或
+   依法受保护的数据，除非您已自行确保处理行为完全符合适用法律法规的要求。
+   开发者不建议将本软件用于上述场景，并对此不承担任何责任。
+5. 本软件处理的是您本人提供的字版照片与文本内容。您应当自行承担对这些材料的
+   保管、备份与保密义务。因您自身的保管不当、设备故障、误操作、磁盘损坏等
+   导致的数据丢失或泄露，开发者不承担任何责任。
+
+
+四、使用限制
+------------
+1. 您应当自行确保对本软件的使用行为完全符合您所在国家或地区的全部适用法律
+   法规、监管要求及公序良俗，并自行取得为使用本软件所必需的一切授权、许可或
+   同意。因您的使用行为违反前述要求而产生的一切后果与法律责任，由您自行承担。
+2. 禁止将本软件用于任何违法违规用途，包括但不限于：
+   · 制作、复制、传播违反法律法规的信息或内容；
+   · 侵犯他人的著作权、商标权、专利权、名誉权、隐私权、肖像权或其他合法权益；
+   · 实施骚扰、欺诈、诽谤、恐吓、跟踪等侵害他人权益的行为；
+   · 伪造他人签名、笔迹、文件、票据、凭证或身份信息；
+   · 规避、破坏或干扰任何安全机制、访问控制或技术保护措施。
+3. 【重要】禁止将本软件或其输出内容用于商业营销、品牌代言、官方客服、自动化
+   应答、身份冒用，以及任何可能使公众误认为您与任何主体存在关联或获得其授权
+   的场景，除非您已取得相应主体的书面授权并自行承担全部法律后果。
+4. 【重要】禁止将本软件生成的任何内容用于伪造、冒充或暗示他人身份或意思表示。
+   手写风格图像的生成具有一定逼真度，您应当自行确保最终产出不被用于任何可能
+   引起误解、争议或法律纠纷的用途。因您的使用行为引发的一切后果，由您自行承担。
+5. 禁止移除、篡改、隐藏或以任何方式淡化本软件中的著作权声明、许可声明及本
+   免责声明。
+6. 禁止将本软件或其修改版本用于任何违反本声明的用途。违反者责任独立自负，
+   并应当赔偿由此给开发者造成的全部损失。
+
+
+五、责任限制
+------------
+1. 在适用法律允许的最大范围内，开发者对本软件及其使用或无法使用所产生的任何
+   损害均不承担任何责任，包括但不限于：直接损害、间接损害、附带损害、特殊
+   损害、惩罚性损害、示范性损害、后果性损害。
+2. 前述损害包括但不限于：数据丢失或损坏、设备损坏或不可用、系统故障、业务
+   中断、利润损失、收入损失、商誉损失、机会损失、替代服务成本、第三方索赔，
+   以及因本软件生成内容而引发的任何争议、纠纷、索赔或诉讼。
+3. 【重要】无论基于何种责任理论（包括但不限于合同责任、侵权责任、过失责任、
+   严格责任或其他任何理论），无论开发者是否已被告知该等损害发生的可能性，
+   前述责任限制均同样适用。
+4. 本声明的各项条款具有可分割性。若其中任何条款被有管辖权的机关认定为无效、
+   非法或不可执行，该条款应当在最小必要范围内被限缩或删除，其余条款的效力
+   不受影响，继续完全有效。
+5. 使用本软件的全部风险与后果，由您自行承担。您应当自行评估本软件是否适合您
+   的使用场景，并自行采取必要的预防措施（包括但不限于数据备份、结果校验、
+   合规审查）。
+
+
+六、第三方组件
+--------------
+1. 本软件依赖的第三方开源组件各自适用其自身的许可协议，与本项目的许可相互
+   独立、互不影响。您的使用行为应当同时遵守这些第三方许可协议。
+2. 您应当自行查阅并遵守所依赖的第三方组件的许可条款。因您违反第三方许可条款
+   而产生的一切责任，由您自行承担，开发者不承担任何责任。
+3. 本项目不分发任何专有代码、AI 模型权重、商业字体或受版权保护的素材。本项目
+   内置的背景纸面均为程序生成的纯纸纹理。若您自行向本项目中引入任何第三方
+   素材，由此产生的全部责任由您自行承担。
+
+
+七、许可范围
+------------
+1. 本项目的源代码依据 MIT 许可协议发布，具体条款以本目录的 LICENSE 文件为准。
+2. 开源许可协议仅约束源代码的使用、复制、修改与分发行为。本免责声明是额外的
+   风险提示与责任约定，不削减、不限制开源许可协议所授予的任何权利。
+3. 【重要】若本免责声明与开源许可协议之间存在不一致：就责任限制、担保排除与
+   使用限制事项，以本免责声明为准；就授权范围与权利授予事项，以开源许可协议
+   为准。
+4. 本声明不改变您依据适用法律的强制性规定所享有的、不可被合同排除的法定权利。
+
+
+八、条款变更与解释
+------------------
+1. 开发者保留随时修改、更新、补充、暂停或终止本免责声明及本项目的权利，无需
+   事先通知，亦无需征得您的同意。变更后的条款自发布之日起生效。您在任何变更
+   后继续使用本软件，即视为您已接受变更后的全部条款。建议您定期查阅本声明的
+   最新版本。
+2. 本声明各节的标题仅为阅读便利而设，不影响、不限制、不扩张任何条款的含义与
+   解释。
+3. 【重要】本声明以中文版本为准。所附英文摘要仅供参考，若中英文表述存在任何
+   歧义或冲突，一律以中文版本为准。
+4. 本声明的解释与适用，应当遵循其字面含义与订立目的。对条款含义存在争议时，
+   应当按照"限制开发者责任、由使用者自担风险"的目的进行解释。
+
+
+################################################################################
+          English Summary (for reference only — the Chinese text above prevails)
+################################################################################
+
+By downloading, cloning, installing, copying, or running this software, you
+acknowledge that you have read, understood, and unconditionally accepted this
+disclaimer in its entirety. If you do not agree, stop using the software
+immediately and delete all copies.
+
+This project is a personal, non-commercial hobby work released for learning and
+technical practice purposes. It is not affiliated with, authorized by, endorsed
+by, sponsored by, or in any way associated with any company, brand, platform,
+organization, or service provider. Any resemblance to existing names or content
+is purely coincidental.
+
+This software is provided "AS IS" and "AS AVAILABLE", without warranty of any
+kind, express or implied, including but not limited to the warranties of
+merchantability, fitness for a particular purpose, title, accuracy, completeness,
+non-infringement, and any warranties arising out of course of dealing or usage
+of trade. All such warranties are disclaimed to the maximum extent permitted by
+applicable law.
+
+This software does not constitute professional advice of any kind. Its output
+must not be relied upon as a basis for any decision.
+
+This README document is AI-generated and may contain inaccuracies. The source
+code prevails.
+
+You are solely responsible for ensuring that your use of this software complies
+with all applicable laws, regulations, and third-party rights in your
+jurisdiction. You are prohibited from using this software to forge or
+misappropriate another person's identity, signature, or handwriting, and from
+using it in any manner that could cause the public to mistakenly believe you are
+associated with or authorized by any entity.
+
+In no event shall the author be liable for any claim, damages, or other
+liability, whether in an action of contract, tort, negligence, strict liability,
+or otherwise, arising from, out of, or in connection with the software or the
+use or other dealings in the software, including but not limited to direct,
+indirect, incidental, special, punitive, exemplary, or consequential damages, or
+damages for loss of data, loss of profits, business interruption, loss of
+goodwill, or third-party claims, even if the author has been advised of the
+possibility of such damages. All risk and responsibility for use of this project
+rests solely with you.
+
+Third-party components are governed by their own licenses. The MIT License
+governs the source code only and is not diminished by this disclaimer. Where
+this disclaimer and the MIT License conflict, this disclaimer controls with
+respect to liability limitations, warranty disclaimers, and usage restrictions,
+while the MIT License controls with respect to the scope of rights granted.
+
+The author may modify, update, suspend, or terminate this disclaimer and this
+project at any time without prior notice. Continued use constitutes acceptance.
+
+This disclaimer is governed by the Chinese text above.
