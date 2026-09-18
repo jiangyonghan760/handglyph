@@ -1,0 +1,20 @@
+# 统一换行符：仓库内一律 LF，检出到 Windows 时按需转换。
+# handglyph.sh 在 Linux/macOS 上要能直接跑，绝不能变成 CRLF。
+* text=auto eol=lf
+*.sh text eol=lf
+*.cmd text eol=crlf
+*.py text eol=lf
+*.md text eol=lf
+*.txt text eol=lf
+*.toml text eol=lf
+
+# 图片按二进制处理，别做任何换行转换
+*.png binary
+*.jpg binary
+*.jpeg binary
+
+# 中文文件名的显示与合并
+*.md diff=markdown
+
+# 禁止 GitHub 把本仓库识别成某种语言并覆盖语言统计
+backgrounds/** linguist-vendored

@@ -1,0 +1,31 @@
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "handglyph"
+# ⚠️ 必须与 handglyph.py 里的 __version__ 一致（pack.py 会在打包时核对并告警）。
+version = "0.7.0"
+description = "用你自己的手写样本生成手写风图片（笔画全部来自本人手写，非字体渲染）"
+requires-python = ">=3.9"
+# 三个核心依赖，缺一不可。
+# 注意：OCR 刻意不列为依赖 —— 它只服务 extract 这一个便利功能，
+# 且还需要额外安装程序本体与语言包，装了会让安装门槛陡增。
+dependencies = [
+    "pillow>=9",
+    "numpy",
+    "scipy",
+]
+
+[project.optional-dependencies]
+# 想用 OCR 自动提取文字时再装（二选一）：
+#   pip install handglyph[ocr]       tesseract 后端（轻量，需另装 tesseract 程序本体）
+#   pip install handglyph[ocr-pp]    PaddleOCR 后端（中文识别更准，但 paddlepaddle 有数百 MB）
+ocr = ["pytesseract"]
+ocr-pp = ["paddleocr", "paddlepaddle"]
+
+[project.scripts]
+handglyph = "handglyph:main"
+
+[tool.setuptools]
+py-modules = ["handglyph"]

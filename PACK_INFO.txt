@@ -1,0 +1,26 @@
+handglyph 发行包内容清单（由 pack.py 自动生成，请勿手改）
+版本：0.7.0
+打包时间：2026-09-18 23:41:42
+内容文件数：19（不含本清单）
+
+  handglyph.py                          313819
+  handglyph.cmd                           2179
+  handglyph.sh                             735
+  pyproject.toml                          1119
+  README.txt                             16576
+  能力说明.md                               109765
+  能力说明.docx                             118508
+  LICENSE                                 1249
+  .gitignore                               955
+  pack.py                                24341
+  backgrounds/cream_notebook.jpg        204219
+  backgrounds/grid_paper.jpg            238899
+  backgrounds/lined_note.jpg            202246
+  backgrounds/red_grid.jpg              262841
+  backgrounds/white_plain.jpg           176392
+  examples/page1.txt                       309
+  examples/page2.txt                       218
+  examples/page3.txt                        83
+  examples/单字检查.txt                         20
+
+合计 1.60 MB（未压缩）

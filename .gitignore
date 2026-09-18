@@ -1,0 +1,41 @@
+__pycache__/
+*.pyc
+*.pyo
+
+# 字库是个人的手写笔迹数据，不进版本库
+library/
+*_library/
+**/glyphs/
+
+# 中间产物与输出
+out/
+gen_out/
+_atlas/
+*.audit.txt
+build_debug.png
+atlas.png
+
+# 临时/调试
+_*
+!._*
+# 本机调试脚本与它们落盘的输出。约定用 `.wb_` 前缀 ——
+# 注意 `_*` 那条**盖不住**它们：`_*` 只在文件名首字符是下划线时匹配，
+# 而这是点号开头。实测漏过一次，一批调试脚本被顺手提交进了仓库。
+.wb_*
+*.tmp
+# 提交信息草稿（用文件传多行 message 时产生），只是本机临时件
+.commitmsg
+.commitmsg.txt
+
+# 压缩包
+*.zip
+
+# 背景图的高清 PNG 版不进仓库（每张 1.5~2.3MB，共 9.15MB）。
+# 仓库里放 JPEG 版（q=88，共约 1MB），肉眼无差别，render 走 bg_path 自动识别格式。
+# 本机想用回 PNG，把文件放回 backgrounds/ 即可。
+backgrounds/*.png
+
+# 系统垃圾
+.DS_Store
+Thumbs.db
+desktop.ini
