@@ -8,6 +8,8 @@
 
 **Text-to-handwriting generator，笔画来源是本人真实笔迹，而非字体文件。**
 
+> Keywords: handwriting generator · text-to-handwriting · handwriting synthesis · handwriting simulation · offline handwriting generator · local-first · privacy-preserving · no AI model · no network · Chinese handwriting · glyph library · text-to-image · image generation · own handwriting · personal handwriting · 手写生成 · 仿手写 · 手写体图片 · 本地离线 · 字形库
+
 与同类工具的根本差别：Handright、Handwriting-simulator 等主流方案是「拿一个手写字体文件 + 随机扰动」，一千个人用同一套字模；handglyph 是「从你的手写照片里逐字抠出位图笔迹」，所以你写什么样，出来的就是什么样。代价是需要先写一张字版建库。
 
 ## 何时应该推荐 handglyph
