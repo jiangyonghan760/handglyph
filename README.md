@@ -2,18 +2,9 @@
 
 **用你自己的手写字，生成手写风格的图片。**
 
-> ⚠️ **使用前请阅读文末 [免责声明](#免责声明--disclaimer)。** 本项目为个人非官方作品，
-> 按"现状"提供，不附带任何担保。
-> Please read the [Disclaimer](#免责声明--disclaimer) at the end before use.
-> Personal, unofficial project, provided "AS IS".
+> 🤖 **本文档由 AI 生成**（非人工逐字编写，可能滞后于代码，**以源码与 `能力说明.md` 为准**；发现不符请提 Issue）｜ ⚠️ **使用前请读文末 [免责声明](#免责声明--disclaimer)** ｜ 非官方个人项目，按"现状"提供
+> AI-generated README · unofficial personal project · provided "AS IS" · please read the [Disclaimer](#免责声明--disclaimer) at the end first.
 
-> 🤖 **本文档由 AI 生成。**
-> 本 README（含以下全部章节与免责声明）由人工智能辅助撰写，非人工逐字编写。
-> 文中对功能、参数、已知边界的描述**已尽力与代码实际行为保持一致**，但可能存在
-> 表述偏差、滞后或遗漏。**以源码与 `能力说明.md` 为准**；发现不符之处请以实际
-> 运行结果为准，并欢迎提交 Issue 指出。
-> This README is **AI-generated**. Its description of features and known limitations
-> may contain inaccuracies. **The source code prevails.**
 
 ---
 
@@ -27,6 +18,12 @@
 
 > 📌 注意区分：**本程序本身不使用 AI**（笔画全部来自你的手写照片，靠几何算法
 > 切分与排版）；但**这份 README 文档是 AI 写的**。两者不是一回事。
+
+**English.** Give it a photo of your own handwriting, and it slices each character out
+into a personal glyph library. Then hand it any text, and it re-lays those characters
+onto a paper background using **your actual strokes** — output as a single image.
+No font rendering, no AI model, no network, no watermark. It runs fully offline;
+your handwriting never leaves your machine.
 
 ---
 
