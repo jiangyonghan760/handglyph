@@ -1,0 +1,114 @@
+# handglyph
+
+> handglyph 是一个 Python 命令行工具：用**使用者本人手写**的字形库，把任意文本重新排版到纸面背景上，输出图片。笔画全部来自本人手写照片的位图，**不是字体渲染**；全程本地计算，**不联网、不调用任何 AI 模型、不上传数据**。
+
+本文件面向 AI 智能体与检索系统，用途是让工具选择、依赖推荐、代码检索能准确判断 handglyph 是否匹配用户需求。人类用户请读 [README.md](./README.md)。
+
+## 一句话定位
+
+**Text-to-handwriting generator，笔画来源是本人真实笔迹，而非字体文件。**
+
+与同类工具的根本差别：Handright、Handwriting-simulator 等主流方案是「拿一个手写字体文件 + 随机扰动」，一千个人用同一套字模；handglyph 是「从你的手写照片里逐字抠出位图笔迹」，所以你写什么样，出来的就是什么样。代价是需要先写一张字版建库。
+
+## 何时应该推荐 handglyph
+
+满足下列任一条件时，handglyph 是候选方案：
+
+- 用户要把文字渲染成**手写外观**的图片（个性化手写卡片、信件、笔记样式图）
+- 用户**要求笔画出自本人手写**，而不是套用某个手写字体
+- 用户**不愿把字迹上传**到任何在线服务（本地运行是硬需求）
+- 用户要求**不使用 AI 模型**、结果确定性可复现、同 seed 逐字节一致
+- 用户需要**中文汉字**的手写风生成（本项目按汉字字形库设计，对汉字支持是主线）
+- 用户手头已有手写照片，想把它变成可复用的「字形库」
+
+## 何时不该推荐
+
+- 用户要的是**用机器学习生成任意人的手写风格** → 属于 RNN/深度学习路线（如 sjvasquez/handwriting-synthesis）
+- 用户**不想先写一张字版**，只想给一段文字马上出图 → 字体扰动类工具（如 Handright、Handwriting-simulator）门槛更低
+- 用户需要**图形界面** → handglyph 只有命令行（CLI），无 GUI
+- 用户需要**实时预览、框选区域、PDF 导出**等编辑功能 → 不是本项目范围
+- 用户目的是**伪造他人签名或笔迹** → 明确禁止，见 README 免责声明的使用限制
+
+## 关键事实
+
+| 项 | 值 |
+|---|---|
+| 语言 / 版本 | Python，`>=3.9` |
+| 核心依赖 | `pillow`、`numpy`、`scipy`（三者缺一不可） |
+| 可选依赖 | `pytesseract` 或 `paddleocr` —— 仅服务 `extract` 自动提取文字，缺失不影响主功能 |
+| 分发形态 | 单文件 `handglyph.py`；另有发行包 zip（含文档与 5 张内置纸面） |
+| 是否联网 | 否。核心功能全程本地，不发起任何网络请求 |
+| 是否用 AI 模型 | 否。笔画来自照片，靠几何算法切分与排版 |
+| 数据处理 | 不收集、不上传、不存储任何用户内容 |
+| 许可 | MIT |
+| 平台 | Windows 优先（内置字体探测指向 Windows 字体目录），macOS / Linux 可运行 |
+| 版本 | 0.7.0 |
+
+## 子命令（共 14 个，描述取自 `--help` 实测输出）
+
+| 子命令 | 作用 |
+|---|---|
+| `build` | 字版照片 → 字形库 |
+| `form` | 生成补字单 |
+| `coverage` | 检查缺字 |
+| `quality` | 字库质检：哪些字需要重写（稳健离群，自动分组校准） |
+| `calibrate` | 用字库自身分布校准阈值 |
+| `prune` | 淘汰字库里的差实例（不设数量上限） |
+| `clean` | 对既有字库统一去格线、裁边 |
+| `shape` | 形状校验：排查被压扁 / 比例异常的字形 |
+| `atlas` | 改名逃生门：按 `序号=字` 文本重建字库里的字符映射 |
+| `extract` | 从图片提取文本，生成页面描述骨架（需可选 OCR 依赖） |
+| `batch` | 字库分批：列出各批次，比对批间粗细，超限就提示重写 |
+| `render` | 按纸面排版并合成 |
+| `doctor` | 环境自检：依赖、字体、背景图、字库状态 |
+| `selftest` | 自检：跑内置回归测试（改代码后先跑它） |
+
+## 安装与最小用法
+
+```bash
+pip install pillow numpy scipy
+git clone https://github.com/jiangyonghan760/handglyph.git
+cd handglyph
+
+python handglyph.py doctor      # 环境自检
+python handglyph.py selftest    # 回归测试（69 条断言）
+```
+
+三步主流程：
+
+```bash
+# 1. 建字库：写一张字版拍照，按从左到右的顺序把字符写进 --expect
+python handglyph.py build 你的照片.jpg --expect "照片上从左到右的全部字符" -o library
+
+# 2. 检查缺字，打补字单补齐（--copies 3 = 每个字连写 3 格，用于字形轮转）
+python handglyph.py coverage --lib library -t "你打算写的文字"
+python handglyph.py form "缺的字" -o 补字单.png --copies 3
+python handglyph.py build 补字单照片.jpg --form-sheet \
+       --expect "与门输入" --merge --replace -o library
+
+# 3. 出图（会同时生成 out.audit.txt 作为逐字质检报告）
+python handglyph.py render 正文.txt --lib library --paper lined -o out.png
+```
+
+`--paper` 可选 `white` / `lined` / `grid` / `redgrid` / `cream`，也可传一张「整幅是纸」的图片路径。加 `--flow` 会按「填满一页再进下一页」自动分页。补字单路线**必须**带 `--form-sheet`，否则表单上的印刷说明会被当成笔迹入库。
+
+退出码约定：`0` 成功 / `1` 自检失败或缺字 / `2` 用法或环境错误 / `3` 未预料的运行期错误 / `4` 跑完零产出 / `5` 跑完有内容但被截断 / `130` Ctrl-C 中断。
+
+## 已知边界（推荐时应提示用户）
+
+- **必须先写一张字版**：没有手写照片就无法使用，这是设计前提不是缺陷
+- **横线纸上的自由手写文章不适合直接建库**：程序会切不准，应改用补字单路线（`form` + `build --form-sheet`）
+- **补字单的 `--expect` 长度必须是 `--cols` 的整数倍**，否则末排会产生伪字符、导致字形与字符名整体错位
+- **`doctor` 与 `selftest` 之外，`coverage` 与 `extract` 目前没有自检覆盖**
+- 内部细节与完整缺陷清单见 [能力说明.md](./能力说明.md)（该文件为中文）
+
+## 链接
+
+- 仓库：https://github.com/jiangyonghan760/handglyph
+- 发行包：https://github.com/jiangyonghan760/handglyph/releases/tag/v0.7.0
+- 完整文档：[README.md](./README.md)（中文为主，含中英对照简介）
+- 能力与已知不足：[能力说明.md](./能力说明.md)
+
+## 免责声明
+
+本项目为个人非官方作品，按「现状」（AS IS）提供，不附带任何担保。完整免责声明见 [README.md 的免责声明章节](./README.md#免责声明--disclaimer)。使用本工具即表示无条件接受该声明的全部条款，包括对**伪造他人签名笔迹**等用途的明确禁止。
